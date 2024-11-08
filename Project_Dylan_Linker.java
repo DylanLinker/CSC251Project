@@ -8,6 +8,8 @@ public class Project_Dylan_Linker {
 
     public static void main(String[] args) {
         List<Policy> policies = new ArrayList<>();
+        int nonSmokerCount = 0;
+        int smokerCount = 0;
 
         // Read policies from PolicyInformation.txt
         try (Scanner fileScanner = new Scanner(new File("PolicyInformation.txt"))) {
@@ -21,9 +23,17 @@ public class Project_Dylan_Linker {
 
                     int age = Integer.parseInt(getNextValidLine(fileScanner));
                     String smokingStatus = getNextValidLine(fileScanner);
+                    
+                    // Count the number of smokers and non-smokers
+                    if (smokingStatus.equals("smoker")) {
+                        smokerCount++;
+                    } else {
+                        nonSmokerCount++;
+                    }
+                    
                     double height = Double.parseDouble(getNextValidLine(fileScanner));
                     double weight = Double.parseDouble(getNextValidLine(fileScanner));
-
+                   
                     // Create a Policy object and add it to the list
                     Policy policy = new Policy(policyNumberLine, providerName, firstName, lastName, age, smokingStatus, height, weight);
                     policies.add(policy);
@@ -54,6 +64,11 @@ public class Project_Dylan_Linker {
             System.out.printf("Policyholder's BMI: %.2f%n", policy.calculateBMI());
             System.out.printf("Policy Price: $%.2f%n", policy.calculatePolicyPrice());
         }
+        
+        // Display the amount of smokers and non-smokers
+        System.out.println();
+        System.out.println("The number of policies with a smoker is: " + smokerCount);
+        System.out.println("The number of policies with a non-smoker is: " + nonSmokerCount);
     }
 
     /**
