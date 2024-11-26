@@ -8,6 +8,9 @@ public class Policy {
     private String providerName;
     private PolicyHolder policyHolder;
 
+    // Static field to track the number of Policy objects created
+    private static int policyCount = 0;
+
     // Constants
     private static final double BASE_FEE = 600.0;
     private static final double AGE_FEE = 75.0;
@@ -17,15 +20,18 @@ public class Policy {
 
     /**
      * Default no-argument constructor that initializes all attributes to default values.
+     * Increments the policy count.
      */
     public Policy() {
         this.policyNumber = "";
         this.providerName = "";
         this.policyHolder = new PolicyHolder();
+        policyCount++;
     }
 
     /**
      * Constructor with all parameters to initialize a Policy instance.
+     * Increments the policy count.
      *
      * @param policyNumber  the policy number
      * @param providerName  the name of the provider
@@ -35,6 +41,7 @@ public class Policy {
         this.policyNumber = policyNumber;
         this.providerName = providerName;
         this.policyHolder = policyHolder;
+        policyCount++;
     }
 
     // Getters and Setters
@@ -63,6 +70,15 @@ public class Policy {
     }
 
     /**
+     * Gets the current number of Policy objects created.
+     *
+     * @return the number of Policy objects created
+     */
+    public static int getPolicyCount() {
+        return policyCount;
+    }
+
+    /**
      * Calculates the total policy price based on the base fee, age, smoking status,
      * and BMI of the policy holder.
      *
@@ -86,14 +102,14 @@ public class Policy {
 
         return totalPrice;
     }
-    
+
     @Override
     public String toString() {
-      return "Policy {" +
-           "Policy Number='" + policyNumber + '\'' +
-           ", Provider Name='" + providerName + '\'' +
-           ", Policy Holder=" + policyHolder +
-           ", Total Policy Price=$" + calculatePolicyPrice() +
-           '}';
+        return "Policy {" +
+               "Policy Number='" + policyNumber + '\'' +
+               ", Provider Name='" + providerName + '\'' +
+               ", Policy Holder=" + policyHolder +
+               ", Total Policy Price=$" + calculatePolicyPrice() +
+               '}';
     }
 }
