@@ -10,10 +10,10 @@ public class PolicyHolder {
     private String smokingStatus;
     private double height; // in inches
     private double weight; // in pounds
-
+   
     // Constants
     private static final double BMI_CONVERSION_FACTOR = 703.0;
-
+   
     /**
      * Default no-argument constructor that initializes all attributes to default values.
      */
@@ -25,7 +25,7 @@ public class PolicyHolder {
         this.height = 0.0;
         this.weight = 0.0;
     }
-
+   
     /**
      * Constructor with all parameters to initialize a PolicyHolder instance.
      *
@@ -44,56 +44,56 @@ public class PolicyHolder {
         this.height = height;
         this.weight = weight;
     }
-
+   
     // Getters and Setters
     public String getFirstName() {
         return firstName;
     }
-
+   
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
-
+   
     public String getLastName() {
         return lastName;
     }
-
+   
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
-
+   
     public int getAge() {
         return age;
     }
-
+   
     public void setAge(int age) {
         this.age = age;
     }
-
+   
     public String getSmokingStatus() {
         return smokingStatus;
     }
-
+   
     public void setSmokingStatus(String smokingStatus) {
         this.smokingStatus = smokingStatus;
     }
-
+   
     public double getHeight() {
         return height;
     }
-
+   
     public void setHeight(double height) {
         this.height = height;
     }
-
+   
     public double getWeight() {
         return weight;
     }
-
+   
     public void setWeight(double weight) {
         this.weight = weight;
     }
-
+   
     /**
      * Calculates the Body Mass Index (BMI) of the policy holder.
      *
@@ -105,14 +105,13 @@ public class PolicyHolder {
     
    @Override
    public String toString() {
-      return "PolicyHolder {" +
-           "First Name='" + firstName + '\'' +
-           ", Last Name='" + lastName + '\'' +
-           ", Age=" + age +
-           ", Smoking Status='" + smokingStatus + '\'' +
-           ", Height=" + height + " inches" +
-           ", Weight=" + weight + " pounds" +
-           ", BMI=" + calculateBMI() +
-           '}';
+       return "Policyholder's First Name: " + firstName + "\n" +
+              "Policyholder's Last Name: " + lastName + "\n" +
+              "Policyholder's Age: " + age + "\n" +
+              "Policyholder's Smoking Status (Y/N): " + smokingStatus + "\n" +
+              "Policyholder's Height: " + height + " inches\n" +
+              "Policyholder's Weight: " + weight + " pounds\n" +
+              String.format("Policyholder's BMI: %.2f", calculateBMI());
    }
+
 }

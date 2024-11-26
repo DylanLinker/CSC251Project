@@ -16,26 +16,27 @@ public class Project_Dylan_Linker {
             while (fileScanner.hasNextLine()) {
                 try {
                     // Read and process lines only if they are not blank
-                    String policyNumberLine = getNextValidLine(fileScanner);
+                    String policyNumber = getNextValidLine(fileScanner);
                     String providerName = getNextValidLine(fileScanner);
                     String firstName = getNextValidLine(fileScanner);
                     String lastName = getNextValidLine(fileScanner);
 
                     int age = Integer.parseInt(getNextValidLine(fileScanner));
                     String smokingStatus = getNextValidLine(fileScanner);
-                    
-                    // Count the number of smokers and non-smokers
-                    if (smokingStatus.equals("smoker")) {
+
+                    // Count smokers and non-smokers
+                    if (smokingStatus.equalsIgnoreCase("smoker")) {
                         smokerCount++;
                     } else {
                         nonSmokerCount++;
                     }
-                    
+
                     double height = Double.parseDouble(getNextValidLine(fileScanner));
                     double weight = Double.parseDouble(getNextValidLine(fileScanner));
-                   
-                    // Create a Policy object and add it to the list
-                    Policy policy = new Policy(policyNumberLine, providerName, firstName, lastName, age, smokingStatus, height, weight);
+
+                    // Create a PolicyHolder and Policy, then add to the list
+                    PolicyHolder policyHolder = new PolicyHolder(firstName, lastName, age, smokingStatus, height, weight);
+                    Policy policy = new Policy(policyNumber, providerName, policyHolder);
                     policies.add(policy);
 
                 } catch (NumberFormatException e) {
@@ -48,32 +49,21 @@ public class Project_Dylan_Linker {
             System.out.println("The file PolicyInformation.txt was not found.");
         }
 
-        // Display the policy information for each policy in the list
+        // Display the policy information using the toString method
         for (Policy policy : policies) {
+            System.out.println(policy);
             System.out.println();
-            System.out.println("Policy Number: " + policy.getPolicyNumber());
-            System.out.println("Provider Name: " + policy.getProviderName());
-            System.out.println("Policyholder's First Name: " + policy.getPolicyHolderFirstName());
-            System.out.println("Policyholder's Last Name: " + policy.getPolicyHolderLastName());
-            System.out.println("Policyholder's Age: " + policy.getPolicyHolderAge());
-            System.out.println("Policyholder's Smoking Status (smoker/non-smoker): " + policy.getSmokingStatus());
-            System.out.println("Policyholder's Height: " + policy.getPolicyHolderHeight() + " inches");
-            System.out.println("Policyholder's Weight: " + policy.getPolicyHolderWeight() + " pounds");
-
-            // Calculate and display the BMI and Policy Price
-            System.out.printf("Policyholder's BMI: %.2f%n", policy.calculateBMI());
-            System.out.printf("Policy Price: $%.2f%n", policy.calculatePolicyPrice());
         }
-        
-        // Display the amount of smokers and non-smokers
-        System.out.println();
+
+        // Display the total number of policies and smoker/non-smoker counts
+        System.out.println("There were " + Policy.getPolicyCount() + " Policy objects created.");
         System.out.println("The number of policies with a smoker is: " + smokerCount);
         System.out.println("The number of policies with a non-smoker is: " + nonSmokerCount);
     }
 
     /**
      * Reads the next non-blank line from the scanner.
-     * 
+     *
      * @param scanner the scanner reading the file
      * @return the next non-blank line as a string
      */
