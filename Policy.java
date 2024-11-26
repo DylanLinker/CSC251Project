@@ -86,4 +86,14 @@ public class Policy {
 
         return totalPrice;
     }
+    
+    @Override
+    public String toString() {
+      return "Policy {" +
+           "Policy Number='" + policyNumber + '\'' +
+           ", Provider Name='" + providerName + '\'' +
+           ", Policy Holder=" + policyHolder +
+           ", Total Policy Price=$" + calculatePolicyPrice() +
+           '}';
+    }
 }
