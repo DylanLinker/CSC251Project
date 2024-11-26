@@ -102,4 +102,17 @@ public class PolicyHolder {
     public double calculateBMI() {
         return (weight * BMI_CONVERSION_FACTOR) / (height * height);
     }
+    
+   @Override
+   public String toString() {
+      return "PolicyHolder {" +
+           "First Name='" + firstName + '\'' +
+           ", Last Name='" + lastName + '\'' +
+           ", Age=" + age +
+           ", Smoking Status='" + smokingStatus + '\'' +
+           ", Height=" + height + " inches" +
+           ", Weight=" + weight + " pounds" +
+           ", BMI=" + calculateBMI() +
+           '}';
+   }
 }
